@@ -1,0 +1,7 @@
+brwserType:
+  #browserName : Firefox
+  browserName : Chrome
+  #browserName : IE
+
+testUrl:
+  URL : http://10.0.0.13:3005/user/login
