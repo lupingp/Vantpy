@@ -6,14 +6,13 @@
 
 import os.path
 import time
-
+import random
 from selenium.common.exceptions import *  # 导入所有的异常类
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.ui import WebDriverWait
-
-from aicc_Cloud.aicc_Log.logger import Logger
+from AICC.aicc_Cloud.aicc_Log.logger import Logger
 
 #create a logger instance
 logger = Logger(logger='BasePage').getlog()

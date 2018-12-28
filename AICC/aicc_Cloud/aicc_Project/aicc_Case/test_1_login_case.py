@@ -4,10 +4,10 @@
 # @FileName: ruisi_login_case_1.py
 # @Software: PyCharm
 
-from aicc_Cloud.aicc_Log.logger import Logger
-from aicc_Cloud.aicc_Plu.ruisi_public import MyTest
-from aicc_Cloud.aicc_Project.aicc_Object.rusi_object_login import Login_Page
-from aicc_Cloud.aicc_common.ruisi_Base import BasePage
+from AICC.aicc_Cloud.aicc_Log.logger import Logger
+from AICC.aicc_Cloud.aicc_Plu.ruisi_public import MyTest
+from AICC.aicc_Cloud.aicc_Project.aicc_Object.rusi_object_login import Login_Page
+from AICC.aicc_Cloud.aicc_common.ruisi_Base import BasePage
 
 logger = Logger(logger="test_1_login_case").getlog()
 class Test_login_model(MyTest,Logger,BasePage):
@@ -123,6 +123,4 @@ class Test_login_model(MyTest,Logger,BasePage):
         else:
             logger.info("验证登录成功")
             One.get_screent_img('Login_Test_8_1_验证登录成功')
-        One.tuichu()
-        One.quitloc()
-        One.quitqueding()
+        One.user_tuichu()

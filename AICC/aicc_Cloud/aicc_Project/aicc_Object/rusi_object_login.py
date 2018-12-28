@@ -5,10 +5,8 @@
 # @Software: PyCharm
 
 from selenium.webdriver.common.by import By
-
-# from aicc_Cloud.aicc_Project.aicc_Page.ruisi_Page import Page
-from aicc_Cloud.aicc_common.ruisi_Base import BasePage
-
+from AICC.aicc_Cloud.aicc_common.ruisi_Base import BasePage
+import time
 
 class Login_Page(BasePage):
     '''''登录页面模型'''
@@ -74,6 +72,13 @@ class Login_Page(BasePage):
         #         print("获取睿思智能客服云平台失败")
         # else:
         #     print("获取Welcome失败")
+
+    # 写一个同一退出的入口，其他用例也会调用该登录方法
+    def user_tuichu(self):
+        self.tuichu()
+        self.quitloc()
+        time.sleep(0.8)
+        self.quitqueding()
 
     # 定位器：错误提示
     #用户名为空

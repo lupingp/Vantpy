@@ -11,7 +11,7 @@ import smtplib
 import unittest
 import time
 import os
-from aicc_Cloud.report.Runner.HTMLTestRunner3 import HTMLTestRunner
+from AICC.aicc_Cloud.report.Runner.HTMLTestRunner3 import HTMLTestRunner
 import sys
 
 #-====mm===-==定义发送邮件===mu=em=non
@@ -33,19 +33,17 @@ def send_mail (file_new):
     smtp.login ("18811730879@163.com","456caocao")#发送账号密码
     smtp.sendmail ("18811730879@163.com","plu@ling-ban.com",msg.as_string())
     smtp.quit ()
-print("邮件准备发送中！")
 
 #======查找测试报告目录,找到最新生成的测试报告文件====
-def new_report (aicc_report):
+def new_report (report):
     # 获取路径下的文件
-    lists = os.listdir (aicc_report)
+    lists = os.listdir (report)
     # 按照时间顺序排序
-    lists.sort (key=lambda fn: os.path.getmtime (aicc_report + "\\" + fn))
+    lists.sort (key=lambda fn: os.path.getmtime (report + "\\" + fn))
     # 获取最新的
-    file_new = os.path.join (aicc_report, lists [-1])
+    file_new = os.path.join (report, lists [-1])
     print (file_new)
     return file_new
-print ('邮件发送已发送 !')
 
 #======================测试用例集======================
 
@@ -71,13 +69,13 @@ if __name__=="__main__":
     #批量执行测试Case
     os_discover = os.path.dirname(os.getcwd())
     discover = unittest.defaultTestLoader.discover (os_discover + '\\aicc_Project\\aicc_Case',
-                                                    pattern="test_1_login_case.py")
+                                                    pattern="test_2_jqrsc_case.py")
     #执行
     runner.run (discover)
     #关闭生成的报告
     fp.close ()
     #查找新生成的报告
-    # os_o = os.path.dirname(os.path.abspath('.'))
-    # file_report_path =new_report ('E:\\SoftwareTesting\\Projectpath\\AICC\\aicc_Cloud\\report\\Rs_html_Report.html')
-    # send_mail (file_report_path) #调用发邮件模块
+    os_o = os.path.dirname(os.getcwd())
+    file_report_path =os_o + "\\report\\Runner"
+    send_mail (file_report_path) #调用发邮件模块
 

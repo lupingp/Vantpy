@@ -9,7 +9,7 @@ import os.path
 import yaml
 from selenium import webdriver
 
-from aicc_Cloud.aicc_Log.logger import Logger
+from AICC.aicc_Cloud.aicc_Log.logger import Logger
 
 logger = Logger(logger="BrowserDriver").getlog()
 

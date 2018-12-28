@@ -62,8 +62,39 @@ import yaml
 # now = time.strftime("%Y-%m-%d_%H_%M_%S_")
 # screen_name = file_path + now + '.jpg'
 # print(screen_name)
-to = []
-for i in range(20):
-    to.append(i)
-if 1 != 2:
-    print(str(to[0]))
+# to = []
+# for i in range(20):
+#     to.append(i)
+# if 1 != 2:
+#     print(str(to[0]))
+
+# current_milli_time = lambda: int(round(time.time() * 1000))
+# print(current_milli_time())
+
+# current_milli_time = lambda: int(round(time.time() * 1000))
+# s_time = current_milli_time()
+# print(s_time)
+
+# import random
+# def GB2312():
+#     head = random.randint(0x4E00, 0x9FA5)
+#     return head
+# s=''
+# for i in range(2):
+#     s=s+chr(GB2312())
+# print(s)
+
+# os_o = os.path.dirname(os.path.abspath('.'))
+# file_report_path = os_o + '\\report\\Runner\\'
+# print(file_report_path)
+def new_report(report):
+    # 获取路径下的文件
+    lists = os.listdir (report)
+    # 按照时间顺序排序
+    lists.sort (key=lambda fn: os.path.getmtime (report + "\\" + fn))
+    # 获取最新的
+    file_new = os.path.join (report, lists [-1])
+    print (file_new)
+    return file_new
+if __name__ == "__main__":
+    new_report()

@@ -5,7 +5,7 @@
 # @Software: PyCharm
 
 import unittest
-from aicc_Cloud.aicc_Project.aicc_Page.BrowserDriver import BrowserDriver
+from AICC.aicc_Cloud.aicc_Project.aicc_Page.BrowserDriver import BrowserDriver
 
 class MyTest(unittest.TestCase):
     @classmethod

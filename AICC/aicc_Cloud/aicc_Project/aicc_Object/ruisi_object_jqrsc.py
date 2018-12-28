@@ -7,9 +7,9 @@
 import time
 import datetime
 from selenium.webdriver.common.by import By
-from aicc_Cloud.aicc_Project.aicc_Page.ruisi_Page import Page
+from AICC.aicc_Cloud.aicc_common.ruisi_Base import BasePage
 
-class jqrsc_page(Page):
+class jqrsc_page(BasePage):
     #===========================================机器人管理页面==================================================
     '''机器人管理页面'''
     # url = ""
@@ -52,65 +52,47 @@ class jqrsc_page(Page):
  #=================================================定义元素方法================================================
     def jqrsc(self):
         #点击机器人市场
-        self.find_element(*self.jqr_maiker).click()
+        self.click(self.jqr_maiker)
 
     def fuzhi_wdjqr(self):
         #点击复制我的机器人
-        self.find_element(*self.fuzhi_jqr).click()
+        self.click(self.fuzhi_jqr)
 
-    def jqrsc_name_loc(self):
+    def jqrsc_name_loc(self,text):
         #输入机器人名称
-        self.find_element(*self.jiqiren_name).clear()
-        now_time = datetime.datetime.now()
-        s_time = ("我的秒数是%s" %now_time.second)
-        self.find_element(*self.jiqiren_name).send_keys(s_time)
+        self.send_key(self.jiqiren_name,text)
 
-    def jqrsc_troduce_loc(self):
+    def jqrsc_troduce_loc(self,text):
         # 输入机器人介绍
-        self.find_element(*self.jiqiren_jieshao).clear()
-        now_time = datetime.datetime.now()
-        s_time = ("大家好，我的秒数是%s初次和大家见面请多多关照！！" %now_time.second)
-        self.find_element(*self.jiqiren_jieshao).send_keys(s_time)
+        self.send_key(self.jiqiren_jieshao,text)
 
     def jqrsc_determine_loc(self):
         #点击确定
-        self.find_element(*self.jiqiren_determine).click()
+        self.click(self.jiqiren_determine)
 
     def jiqiren_quxiao_loc(self):
         # 点击取消按钮
-        self.find_element(*self.jqr_quxiao).click()
+        self.click(self.jqr_quxiao)
 
     def phone_number_log(self):
         #点击电话体检
-        self.find_element(*self.phone_number).click()
+        self.click(self.phone_number)
 
-    def shuru_phone_log(self):
+    def shuru_phone_log(self,text):
         #输入手机号
-        self.find_element(*self.shuru_phone).clear()
-        # now_time = datetime.datetime.now()
-        # s_time = ("当前秒是%s"%now_time.second)
-        self.find_element(*self.shuru_phone).send_keys("18811730879")
+        self.send_key(self.shuru_phone,text)
 
-    def shuru_phone_log_1(self):
+    def shuru_phone_log_1(self,text):
         #输入手机号
-        self.find_element(*self.shuru_phone).clear()
-        now_time = datetime.datetime.now()
-        s_time = ("%s"%now_time.second)
-        self.find_element(*self.shuru_phone).send_keys(s_time)
+        self.send_key(self.shuru_phone,text)
 
-    def jqrsc_rw_log(self):
+    def jqrsc_rw_log(self,text):
         #输入 测试专业机器人导出流程机器人的 参数:任务名称
-        self.find_element(*self.jqrsc_rw).clear()
-        now_time = datetime.datetime.now()
-        s_time = ("%s"%now_time.second)
-        self.find_element(*self.jqrsc_rw).send_keys(s_time)
+        self.send_key(self.jqrsc_rw,text)
 
-    def jqrsc_rw_log_1(self):
+    def jqrsc_rw_log_1(self,text):
         #输入 测试专业机器人导出流程机器人的 参数:任务名称
-        self.find_element(*self.jqrsc_rw).clear()
-        now_time = datetime.datetime.now()
-        s_time = ("当前秒是%s"%now_time.second)
-        self.find_element(*self.jqrsc_rw).send_keys(s_time)
+        self.send_key(self.jqrsc_rw,text)
     # def shuru_number_loc(self):
     #     # 定义选择号码
     #     self.find_element(*self.shuru_number).click()
@@ -130,15 +112,17 @@ class jqrsc_page(Page):
 
     def waihu_log(self):
         #点击发起外呼
-        self.find_element(*self.waihu).click()
+        self.click(self.waihu)
 
     def waihu_quxiao_loc(self):
         #外呼取消方法
-        self.find_element(*self.waihu_quxiao).click()
+        self.click(self.waihu_quxiao)
 
     # ==========================================定位器：错误提示===========================================
     #错误的机器人名字 断言验证
     jqrsc_name_error = (By.XPATH,"//*[@id='scroll']/div/div/div[2]/div/div[2]/form/div[4]/div/button[1]")
+    #机器人名字重复 断言验证
+    jqrsc_name_repeat = (By.CLASS_NAME,"el-message__content")
     #输入错误的任务名称点击发起外呼 断言验证
     jqrsc_rw_name_error = (By.XPATH,"//*[@id='scroll']/div/div/div[3]/div/div[2]/div[1]/form/div[2]/div/div[2]")
     #输入错误的手机号点击发起外呼 断言验证
@@ -149,42 +133,42 @@ class jqrsc_page(Page):
     jqrsc_waihu_log_error = (By.CLASS_NAME,"el-message__content")
     #验证进入机器人市场
     def type_jqrsc_page_error(self):
-        return self.find_element(*self.jqr_maiker).text
+        return self.get_text(self.jqr_maiker)
 
     #验证复制我的输入机器人名称、介绍文本
     def type_jqrsc_name_error(self):
-        return self.find_element(*self.jiqiren_name).text
+        return self.get_text(self.jiqiren_name)
 
     def type_jqrsc_introduce_error(self):
-        return self.find_element(*self.jiqiren_jieshao).text
+        return self.get_text(self.jiqiren_jieshao)
 
     #验证重新 打印机器人名字重复
     def type_jqrsc_cm_error(self):
-        return self.find_element(*self.jqrsc_name_error).text
+        return self.get_text(self.jqrsc_name_repeat)
 
     #验证 测试专业机器人导出流程机器人的 参数:手机号
     def type_jqrsc_phone_error(self):
-        return self.find_element(*self.shuru_phone).text
+        return self.get_text(self.shuru_phone)
 
     #验证 测试专业机器人导出流程机器人的 参数:任务名称
     def type_jqrsc_rw_error(self):
-        return self.find_element(*self.jqrsc_rw).text
+        return self.get_text(self.jqrsc_rw)
 
-    #验证 测试专业机器人导出流程机器人的 输入数字的任务名称点击发起外呼
+    #验证 (测试专业机器人导出流程机器人的） 输入数字的任务名称点击发起外呼
     def type_jqrsc_rw_name_error(self):
-        return  self.find_element(*self.jqrsc_rw_name_error).text
+        return  self.get_text(self.jqrsc_rw_name_error)
 
     #验证 测试专业机器人导出流程机器人的 输入错误的手机号点击发起外呼
     def type_jqrsc_shuru_phone_log_error(self):
-        return self.find_element(*self.jqrsc_shuru_phone_log_error).text
+        return self.get_text(self.jqrsc_shuru_phone_log_error)
 
     #验证 不输入手机号、任务名称、点击发起外呼
     def type_jqrsc_null_error(self):
-        return self.find_element(*self.jqrsc_null_error).text
+        return self.get_text(self.jqrsc_null_error)
 
     #验证 测试专业机器人导出流程机器人的 输入正确的任务名称、手机号点击发起外呼
     def type_jqrsc_waihu_log_error(self):
-        return self.find_element(*self.jqrsc_waihu_log_error).text
+        return self.get_text(self.jqrsc_waihu_log_error)
 
 
 
