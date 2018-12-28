@@ -75,7 +75,7 @@ if __name__=="__main__":
     #关闭生成的报告
     fp.close ()
     #查找新生成的报告
-    os_o = os.path.dirname(os.getcwd())
-    file_report_path =os_o + "\\report\\Runner"
-    send_mail (file_report_path) #调用发邮件模块
+    # os_o = os.path.dirname(os.getcwd())
+    # file_report_path =os_o + "\\report\\Runner"
+    # send_mail (file_report_path) #调用发邮件模块
 
